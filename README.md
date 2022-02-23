@@ -49,11 +49,11 @@ This is an example of how to list things you need to use the software and how to
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/sanduler/password_manager
+   git clone https://github.com/sanduler/git-habit-tracker
    ```
 2. Install NPM packages
    ```sh
-   npm install pyperclip
+   npm install requests
    ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
