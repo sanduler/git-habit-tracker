@@ -21,6 +21,7 @@ pixel_parameters = {
 
 }
 # use the endpoint to get the post response
-response = requests.post(pixela_api_endpoint)
+response = requests.post(url=pixela_api_endpoint, json=pixel_parameters)
 # call for the exception.
 requests.RequestException(response)
+# print(response.text)
