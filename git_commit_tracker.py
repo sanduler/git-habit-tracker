@@ -4,17 +4,18 @@
 # post every day their habits and then the program determines the intensity of the habit.
 import requests
 import os
+from datetime import datetime
 
 # create env variables for the required parameters need for the POST
-pixela_api_key = os.environ["PIXELA_API"]
-pixela_username = os.environ["PIXELA_USERNAME"]
+PIXELA_API_KEY = os.environ["PIXELA_API"]
+PIXELA_USERNAME = os.environ["PIXELA_USERNAME"]
 pixela_api_endpoint = "https://pixe.la/v1/users"
 graphID = "graph1"
 
 # use a dictionary to keep track of the variables
 user_pixel_parameters = {
-    "token": pixela_api_key,
-    "username": pixela_username,
+    "token": PIXELA_API_KEY,
+    "username": PIXELA_USERNAME,
     "agreeTermsOfService": "yes",
     "notMinor": "yes",
 
@@ -25,7 +26,7 @@ response = requests.post(url=pixela_api_endpoint, json=user_pixel_parameters)
 requests.RequestException(response)
 # print(response.text)
 
-graph_pixela_endpoint = f"{pixela_api_endpoint}/{pixela_username}/graphs"
+graph_pixela_endpoint = f"{pixela_api_endpoint}/{PIXELA_USERNAME}/graphs"
 graph_config = {
     "id": graphID,
     "name": "Commit Tracker",
@@ -36,14 +37,27 @@ graph_config = {
 }
 
 headers = {
-    "X-USER-TOKEN": pixela_api_key
+    "X-USER-TOKEN": PIXELA_API_KEY
 }
 requests.post(url=graph_pixela_endpoint, json=graph_config, headers=headers)
 
-pixel_pixela_endpoint = f"{pixela_api_endpoint}/{pixela_username}/graphs/{graphID}"
+pixel_pixela_endpoint = f"{pixela_api_endpoint}/{PIXELA_USERNAME}/graphs/{graphID}"
+today = datetime.now()
 pixel_config = {
-    "date": "20220223",
-    "quantity": "1",
+    "date": today.strftime("%Y%m%d"),
+    "quantity": "3",
 }
 
 requests.post(url=pixel_pixela_endpoint, json=pixel_config, headers=headers)
+
+update_pixel_endpoint = f"{pixela_api_endpoint}/{PIXELA_USERNAME}/graphs/{graphID}/20220222"
+
+update_pixel_config = {
+    "quantity": "3",
+}
+
+requests.put(url=update_pixel_endpoint, json=update_pixel_config, headers=headers)
+
+delete_pixel_endpoint = f"{pixela_api_endpoint}/{PIXELA_USERNAME}/graphs/{graphID}/20220222"
+
+requests.delete(url=update_pixel_endpoint, json=update_pixel_config, headers=headers)
