@@ -1,5 +1,5 @@
 
-# Password Manager
+# Git Commit Tracker
 
 A simple habit tracker using Pixela API. The program generates a username, graph, and pixels using
 that the user has on his own page. The ability to get, post, update and delete the pixel was implemented.
