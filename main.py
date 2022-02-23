@@ -1,16 +1,18 @@
-# This is a sample Python script.
-
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+# Name: Ruben Sanduleac
+# Date: 2/22/22
+# Description: The program is habit tracker for the user
+# post every day their habits and then the program determines the intensity of the habit.
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+import requests
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+pixela_api_endpoint = "https://pixe.la/v1/users"
+
+pixel_parameters = {
+    "token": "aafsdi2hf82mv73bzali2j",
+    "username": "sanduler",
+    "agreeTermsOfService": "yes",
+    "notMinor": "yes",
+
+}
+requests.post()
