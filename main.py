@@ -5,14 +5,17 @@
 
 
 import requests
+import os
 
+pixela_api_key = os.environ["PIXELA_API"]
+pixela_username = os.environ["PIXELA_USERNAME"]
 pixela_api_endpoint = "https://pixe.la/v1/users"
-
 pixel_parameters = {
-    "token": "aafsdi2hf82mv73bzali2j",
-    "username": "sanduler",
+    "token": pixela_api_key,
+    "username": pixela_username,
     "agreeTermsOfService": "yes",
     "notMinor": "yes",
 
 }
-requests.post()
+response = requests.post(pixela_api_endpoint)
+requests.RequestException(response)
