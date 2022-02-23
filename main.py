@@ -1,16 +1,27 @@
-# This is a sample Python script.
-
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+# Name: Ruben Sanduleac
+# Date: 2/22/22
+# Description: The program is habit tracker for the user
+# post every day their habits and then the program determines the intensity of the habit.
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+import requests
+import os
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# create env variables for the required parameters need for the POST
+pixela_api_key = os.environ["PIXELA_API"]
+pixela_username = os.environ["PIXELA_USERNAME"]
+pixela_api_endpoint = "https://pixe.la/v1/users"
+
+# use a dictionary to keep track of the variables
+user_pixel_parameters = {
+    "token": pixela_api_key,
+    "username": pixela_username,
+    "agreeTermsOfService": "yes",
+    "notMinor": "yes",
+
+}
+# use the endpoint to get the post response
+response = requests.post(url=pixela_api_endpoint, json=user_pixel_parameters)
+# call for the exception.
+requests.RequestException(response)
+# print(response.text)
