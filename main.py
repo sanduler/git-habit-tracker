@@ -7,9 +7,12 @@
 import requests
 import os
 
+# create env variables for the required parameters need for the POST
 pixela_api_key = os.environ["PIXELA_API"]
 pixela_username = os.environ["PIXELA_USERNAME"]
 pixela_api_endpoint = "https://pixe.la/v1/users"
+
+# use a dictionary to keep track of the variables
 pixel_parameters = {
     "token": pixela_api_key,
     "username": pixela_username,
@@ -17,5 +20,7 @@ pixel_parameters = {
     "notMinor": "yes",
 
 }
+# use the endpoint to get the post response
 response = requests.post(pixela_api_endpoint)
+# call for the exception.
 requests.RequestException(response)
