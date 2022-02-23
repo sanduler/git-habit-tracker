@@ -13,7 +13,7 @@ pixela_username = os.environ["PIXELA_USERNAME"]
 pixela_api_endpoint = "https://pixe.la/v1/users"
 
 # use a dictionary to keep track of the variables
-pixel_parameters = {
+user_pixel_parameters = {
     "token": pixela_api_key,
     "username": pixela_username,
     "agreeTermsOfService": "yes",
@@ -21,7 +21,7 @@ pixel_parameters = {
 
 }
 # use the endpoint to get the post response
-response = requests.post(url=pixela_api_endpoint, json=pixel_parameters)
+response = requests.post(url=pixela_api_endpoint, json=user_pixel_parameters)
 # call for the exception.
 requests.RequestException(response)
 # print(response.text)
