@@ -9,6 +9,7 @@ import os
 pixela_api_key = os.environ["PIXELA_API"]
 pixela_username = os.environ["PIXELA_USERNAME"]
 pixela_api_endpoint = "https://pixe.la/v1/users"
+graphID = "graph1"
 
 # use a dictionary to keep track of the variables
 user_pixel_parameters = {
@@ -26,14 +27,23 @@ requests.RequestException(response)
 
 graph_pixela_endpoint = f"{pixela_api_endpoint}/{pixela_username}/graphs"
 graph_config = {
-    "id": "graph1",
+    "id": graphID,
     "name": "Commit Tracker",
     "unit": "commit",
     "type": "int",
-    "color": "momiji"
+    "color": "momiji",
+    "timezone": "PST"
 }
 
 headers = {
     "X-USER-TOKEN": pixela_api_key
 }
 requests.post(url=graph_pixela_endpoint, json=graph_config, headers=headers)
+
+pixel_pixela_endpoint = f"{pixela_api_endpoint}/{pixela_username}/graphs/{graphID}"
+pixel_config = {
+    "date": "20220223",
+    "quantity": "1",
+}
+
+requests.post(url=pixel_pixela_endpoint, json=pixel_config, headers=headers)
