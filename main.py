@@ -2,8 +2,6 @@
 # Date: 2/22/22
 # Description: The program is habit tracker for the user
 # post every day their habits and then the program determines the intensity of the habit.
-
-
 import requests
 import os
 
@@ -25,3 +23,17 @@ response = requests.post(url=pixela_api_endpoint, json=user_pixel_parameters)
 # call for the exception.
 requests.RequestException(response)
 # print(response.text)
+
+graph_pixela_endpoint = f"{pixela_api_endpoint}/{pixela_username}/graphs"
+graph_config = {
+    "id": "graph1",
+    "name": "Commit Tracker",
+    "unit": "commit",
+    "type": "int",
+    "color": "momiji"
+}
+
+headers = {
+    "X-USER-TOKEN": pixela_api_key
+}
+requests.post(url=graph_pixela_endpoint, json=graph_config, headers=headers)
