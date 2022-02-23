@@ -4,6 +4,7 @@
 # post every day their habits and then the program determines the intensity of the habit.
 import requests
 import os
+from datetime import datetime
 
 # create env variables for the required parameters need for the POST
 pixela_api_key = os.environ["PIXELA_API"]
@@ -41,9 +42,22 @@ headers = {
 requests.post(url=graph_pixela_endpoint, json=graph_config, headers=headers)
 
 pixel_pixela_endpoint = f"{pixela_api_endpoint}/{pixela_username}/graphs/{graphID}"
+today = datetime.now()
 pixel_config = {
-    "date": "20220223",
-    "quantity": "1",
+    "date": today.strftime("%Y%m%d"),
+    "quantity": "3",
 }
 
 requests.post(url=pixel_pixela_endpoint, json=pixel_config, headers=headers)
+
+update_pixel_endpoint = f"{pixela_api_endpoint}/{pixela_username}/graphs/{graphID}/20220222"
+
+update_pixel_config = {
+    "quantity": "3",
+}
+
+requests.put(url=update_pixel_endpoint, json=update_pixel_config, headers=headers)
+
+delete_pixel_endpoint = f"{pixela_api_endpoint}/{pixela_username}/graphs/{graphID}/20220222"
+
+requests.delete(url=update_pixel_endpoint, json=update_pixel_config, headers=headers)
